@@ -15,7 +15,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void calculateAll();
+
 private:
+
     Ui::MainWindow *ui;
 };
 

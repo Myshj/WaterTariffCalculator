@@ -14,8 +14,8 @@ class ExtendedMeterReadingChange : public QObject
     Q_OBJECT
 public:
     explicit ExtendedMeterReadingChange(
-            const QSharedPointer<ExtendedMeterReading>& oldData = QSharedPointer<ExtendedMeterReading>(new ExtendedMeterReading()),
-            const QSharedPointer<ExtendedMeterReading>& newData = QSharedPointer<ExtendedMeterReading>(new ExtendedMeterReading()),
+            const QSharedPointer<ExtendedMeterReading>& oldData = QSharedPointer<ExtendedMeterReading>::create(),
+            const QSharedPointer<ExtendedMeterReading>& newData = QSharedPointer<ExtendedMeterReading>::create(),
             QObject *parent = 0
     );
 

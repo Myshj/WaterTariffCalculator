@@ -16,6 +16,6 @@ void DoubleNumber::setValue(const double value)
 {
     if(this->value != value){
         this->value = value;
-        emit valueChanged();
+        emit valueChanged(value);
     }
 }

@@ -15,8 +15,8 @@ class ExtendedMeterReadingInputSession : public QObject
     Q_OBJECT
 public:
     explicit ExtendedMeterReadingInputSession(
-            const QSharedPointer<ExtendedMeterReadingChange>& change = QSharedPointer<ExtendedMeterReadingChange>(new ExtendedMeterReadingChange()),
-            const QSharedPointer<TariffsForWater>& tariffs = QSharedPointer<TariffsForWater>(new TariffsForWater()),
+            const QSharedPointer<ExtendedMeterReadingChange>& change = QSharedPointer<ExtendedMeterReadingChange>::create(),
+            const QSharedPointer<TariffsForWater>& tariffs = QSharedPointer<TariffsForWater>::create(),
             QObject *parent = 0
     );
 

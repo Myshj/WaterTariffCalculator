@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QPointer>
 
-#include "extendedmeterreadinginputsession.h"
+#include "session.h"
 
 namespace Ui {
 class MainWindow;
@@ -18,14 +18,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-private slots:
-    void calculateAll();
-
 private:
 
     Ui::MainWindow *ui;
 
-    QPointer<ExtendedMeterReadingInputSession> inputSession;
+    QPointer<Session> currentSession;
 };
 
 #endif // MAINWINDOW_H

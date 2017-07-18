@@ -13,8 +13,8 @@ class TariffsForWater : public QObject
     Q_OBJECT
 public:
     explicit TariffsForWater(
-            const QSharedPointer<DoubleNumber>& cold = QSharedPointer<DoubleNumber>(new DoubleNumber()),
-            const QSharedPointer<DoubleNumber>& heated = QSharedPointer<DoubleNumber>(new DoubleNumber()),
+            const QSharedPointer<DoubleNumber>& cold = QSharedPointer<DoubleNumber>::create(),
+            const QSharedPointer<DoubleNumber>& heated = QSharedPointer<DoubleNumber>::create(),
             QObject *parent = 0
     );
 

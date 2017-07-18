@@ -29,13 +29,19 @@ SOURCES += main.cpp\
     extendedmeterreading.cpp \
     tariffsforwater.cpp \
     extendedmeterreadingchange.cpp \
-    extendedmeterreadinginputsession.cpp
+    extendedmeterreadinginputsession.cpp \
+    session.cpp \
+    consumedwatercalculationbinding.cpp \
+    waterpricecalculationbinding.cpp
 
 HEADERS  += mainwindow.h \
     doublenumber.h \
     extendedmeterreading.h \
     tariffsforwater.h \
     extendedmeterreadingchange.h \
-    extendedmeterreadinginputsession.h
+    extendedmeterreadinginputsession.h \
+    session.h \
+    consumedwatercalculationbinding.h \
+    waterpricecalculationbinding.h
 
 FORMS    += mainwindow.ui

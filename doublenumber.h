@@ -16,7 +16,7 @@ public:
     double getValue() const;
 
 signals:
-    void valueChanged();
+    void valueChanged(const double);
 
 public slots:
 

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QSharedPointer>
+
 #include "doublenumber.h"
 
 /**
@@ -13,10 +14,10 @@ class ExtendedMeterReading : public QObject
     Q_OBJECT
 public:
     explicit ExtendedMeterReading(
-            const QSharedPointer<DoubleNumber>& lessThen40 = QSharedPointer<DoubleNumber>(new DoubleNumber()),
-            const QSharedPointer<DoubleNumber>& from40To44 = QSharedPointer<DoubleNumber>(new DoubleNumber()),
-            const QSharedPointer<DoubleNumber>& from45To49 = QSharedPointer<DoubleNumber>(new DoubleNumber()),
-            const QSharedPointer<DoubleNumber>& greaterThen50 = QSharedPointer<DoubleNumber>(new DoubleNumber()),
+            const QSharedPointer<DoubleNumber>& lessThen40 = QSharedPointer<DoubleNumber>::create(),
+            const QSharedPointer<DoubleNumber>& from40To44 = QSharedPointer<DoubleNumber>::create(),
+            const QSharedPointer<DoubleNumber>& from45To49 = QSharedPointer<DoubleNumber>::create(),
+            const QSharedPointer<DoubleNumber>& greaterThen50 = QSharedPointer<DoubleNumber>::create(),
             QObject *parent = 0
             );
 

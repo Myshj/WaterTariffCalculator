@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPointer>
+
+#include "extendedmeterreadinginputsession.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,6 +24,8 @@ private slots:
 private:
 
     Ui::MainWindow *ui;
+
+    QPointer<ExtendedMeterReadingInputSession> inputSession;
 };
 
 #endif // MAINWINDOW_H

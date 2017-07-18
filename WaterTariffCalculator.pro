@@ -24,8 +24,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    doublenumber.cpp \
+    extendedmeterreading.cpp \
+    tariffsforwater.cpp \
+    extendedmeterreadingchange.cpp \
+    extendedmeterreadinginputsession.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    doublenumber.h \
+    extendedmeterreading.h \
+    tariffsforwater.h \
+    extendedmeterreadingchange.h \
+    extendedmeterreadinginputsession.h
 
 FORMS    += mainwindow.ui

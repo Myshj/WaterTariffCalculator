@@ -8,6 +8,9 @@
 #include "doublenumber.h"
 #include "tariffsforwater.h"
 
+/**
+ * @brief Calculates overall price of consumed water based on given tariffs and transmits it to a given object.
+ */
 class WaterPriceCalculationBinding : public QObject
 {
     Q_OBJECT

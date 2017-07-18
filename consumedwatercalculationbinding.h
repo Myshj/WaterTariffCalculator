@@ -8,7 +8,7 @@
 #include "extendedmeterreading.h"
 
 /**
- * @brief Calculates volume of consumed water and writes it to a given object.
+ * @brief Calculates volume of consumed water and transmits it to a given object.
  */
 class ConsumedWaterCalculationBinding : public QObject
 {

@@ -37,6 +37,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     auto price = currentSession.data()->getPrice().data();
     connect(price, &DoubleNumber::valueChanged, ui->toPaySpinBox, &QDoubleSpinBox::setValue);
+
+    auto correctedHeatedVolume = currentSession.data()->getCorrectedHeatedVolume().data();
+    connect(correctedHeatedVolume, &DoubleNumber::valueChanged, ui->giocSpinBox, &QDoubleSpinBox::setValue);
 }
 
 MainWindow::~MainWindow()

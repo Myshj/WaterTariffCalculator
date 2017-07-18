@@ -4,13 +4,16 @@ Session::Session(
         const QSharedPointer<ExtendedMeterReadingInputSession>& input,
         const QSharedPointer<ExtendedMeterReading>& consumed,
         const QSharedPointer<DoubleNumber>& price,
+        const QSharedPointer<DoubleNumber>& correctedHeatedVolume,
         QObject *parent
 ) : QObject(parent),
     input(input),
     consumed(consumed),
     price(price),
+    correctedHeatedVolume(correctedHeatedVolume),
     consumedBinding(new ConsumedWaterCalculationBinding(input.data()->getChange(), consumed)),
-    priceBinding(new WaterPriceCalculationBinding(consumed, input.data()->getTariffs(), price))
+    priceBinding(new WaterPriceCalculationBinding(consumed, input.data()->getTariffs(), price)),
+    correctedHeatedVolumeBinding(new DivisionBinding(price, input.data()->getTariffs().data()->getHeated(), correctedHeatedVolume))
 {
 
 }
@@ -38,4 +41,9 @@ QSharedPointer<WaterPriceCalculationBinding> Session::getPriceBinding() const
 QSharedPointer<DoubleNumber> Session::getPrice() const
 {
     return price;
+}
+
+QSharedPointer<DoubleNumber> Session::getCorrectedHeatedVolume() const
+{
+    return correctedHeatedVolume;
 }

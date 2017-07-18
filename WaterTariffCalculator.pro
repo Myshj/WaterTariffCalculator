@@ -32,7 +32,11 @@ SOURCES += main.cpp\
     extendedmeterreadinginputsession.cpp \
     session.cpp \
     consumedwatercalculationbinding.cpp \
-    waterpricecalculationbinding.cpp
+    waterpricecalculationbinding.cpp \
+    bindings/binding.cpp \
+    bindings/numeric/numericbinding.cpp \
+    bindings/numeric/twonumbersbinding.cpp \
+    bindings/numeric/divisionbinding.cpp
 
 HEADERS  += mainwindow.h \
     doublenumber.h \
@@ -42,6 +46,10 @@ HEADERS  += mainwindow.h \
     extendedmeterreadinginputsession.h \
     session.h \
     consumedwatercalculationbinding.h \
-    waterpricecalculationbinding.h
+    waterpricecalculationbinding.h \
+    bindings/binding.h \
+    bindings/numeric/numericbinding.h \
+    bindings/numeric/twonumbersbinding.h \
+    bindings/numeric/divisionbinding.h
 
 FORMS    += mainwindow.ui

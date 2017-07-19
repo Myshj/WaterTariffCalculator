@@ -12,6 +12,11 @@
 
 #include "doublenumber.h"
 
+#include "connectors/doublespinboxtonumberconnector.h"
+#include "connectors/doublenumbertospinboxconnector.h"
+#include "connectors/doublespinboxestoextendedmeterreadingconnector.h"
+#include "connectors/extendedmeterreadingtodoublespinboxesconnector.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -30,11 +35,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_saveButton_clicked()
 {
-    qDebug() << "Save requested!";
-
     saveCurrentSession();
-
-    //qDebug() << savedSession;
 }
 
 void MainWindow::bindControlsToCurrentSession()
@@ -44,26 +45,41 @@ void MainWindow::bindControlsToCurrentSession()
     auto sessionChange = inputSession.data()->getChange().data();
 
     auto newData = sessionChange->getNewData().data();
-    connect(ui->currentLessThen40SpinBox, SIGNAL(valueChanged(const double)), newData->getLessThen40().data(), SLOT(setValue(const double)));
-    connect(ui->currentFrom40To44SpinBox, SIGNAL(valueChanged(const double)), newData->getFrom40To44().data(), SLOT(setValue(const double)));
-    connect(ui->currentFrom45To49SpinBox, SIGNAL(valueChanged(const double)), newData->getFrom45To49().data(), SLOT(setValue(const double)));
-    connect(ui->currentGreaterThen50SpinBox, SIGNAL(valueChanged(const double)), newData->getGreaterThen50().data(), SLOT(setValue(const double)));
+    DoubleSpinboxesToExtendedMeterReadingConnector::connect(
+                *ui->currentLessThen40SpinBox,
+                *ui->currentFrom40To44SpinBox,
+                *ui->currentFrom45To49SpinBox,
+                *ui->currentGreaterThen50SpinBox,
+                *newData
+    );
 
     auto oldData = sessionChange->getOldData().data();
-    connect(ui->oldLessThen40SpinBox, SIGNAL(valueChanged(const double)), oldData->getLessThen40().data(), SLOT(setValue(const double)));
-    connect(ui->oldFrom40To44SpinBox, SIGNAL(valueChanged(const double)), oldData->getFrom40To44().data(), SLOT(setValue(const double)));
-    connect(ui->oldFrom45To49SpinBox, SIGNAL(valueChanged(const double)), oldData->getFrom45To49().data(), SLOT(setValue(const double)));
-    connect(ui->oldGreaterThen50SpinBox, SIGNAL(valueChanged(const double)), oldData->getGreaterThen50().data(), SLOT(setValue(const double)));
+    DoubleSpinboxesToExtendedMeterReadingConnector::connect(
+                *ui->oldLessThen40SpinBox,
+                *ui->oldFrom40To44SpinBox,
+                *ui->oldFrom45To49SpinBox,
+                *ui->oldGreaterThen50SpinBox,
+                *oldData
+    );
+
+    auto consumedVolume = currentSession->getConsumed().data();
+    ExtendedMeterReadingToDoubleSpinBoxesConnector::connect(
+                *consumedVolume,
+                *ui->lessThen40VolumeSpinBox,
+                *ui->from40To44VolumeSpinBox,
+                *ui->from45To49VolumeSpinBox,
+                *ui->greaterThen50VolumeSpinBox
+    );
 
     auto tariffs = inputSession.data()->getTariffs().data();
-    connect(ui->heatedWaterTariffSpinBox, SIGNAL(valueChanged(const double)), tariffs->getHeated().data(), SLOT(setValue(const double)));
-    connect(ui->coldWaterTariffSpinBox, SIGNAL(valueChanged(const double)), tariffs->getCold().data(), SLOT(setValue(const double)));
+    DoubleSpinBoxToNumberConnector::connect(*ui->heatedWaterTariffSpinBox, *tariffs->getHeated());
+    DoubleSpinBoxToNumberConnector::connect(*ui->coldWaterTariffSpinBox, *tariffs->getCold());
 
     auto price = currentSession.data()->getPrice().data();
-    connect(price, &DoubleNumber::valueChanged, ui->toPaySpinBox, &QDoubleSpinBox::setValue);
+    DoubleNumberToSpinBoxConnector::connect(*price, *ui->toPaySpinBox);
 
     auto correctedHeatedVolume = currentSession.data()->getCorrectedHeatedVolume().data();
-    connect(correctedHeatedVolume, &DoubleNumber::valueChanged, ui->giocSpinBox, &QDoubleSpinBox::setValue);
+    DoubleNumberToSpinBoxConnector::connect(*correctedHeatedVolume, *ui->giocSpinBox);
 }
 
 void MainWindow::saveCurrentSession()
@@ -93,8 +109,6 @@ void MainWindow::loadSession()
     QJsonDocument saveDocument(QJsonDocument::fromJson(saveFile.readAll()));
     QJsonObject savedSession = saveDocument.object();
 
-    //qDebug() << savedSession;
-
     currentSession =JsonUtilities::loadSession(savedSession);
 
     renderCurrentSession();
@@ -118,35 +132,25 @@ void MainWindow::renderCurrentSession()
     ui->currentFrom45To49SpinBox->setValue(newData->getFrom45To49()->getValue());
     ui->currentGreaterThen50SpinBox->setValue(newData->getGreaterThen50()->getValue());
 
-//    connect(ui->currentLessThen40SpinBox, SIGNAL(valueChanged(const double)), newData->getLessThen40().data(), SLOT(setValue(const double)));
-//    connect(ui->currentFrom40To44SpinBox, SIGNAL(valueChanged(const double)), newData->getFrom40To44().data(), SLOT(setValue(const double)));
-//    connect(ui->currentFrom45To49SpinBox, SIGNAL(valueChanged(const double)), newData->getFrom45To49().data(), SLOT(setValue(const double)));
-//    connect(ui->currentGreaterThen50SpinBox, SIGNAL(valueChanged(const double)), newData->getGreaterThen50().data(), SLOT(setValue(const double)));
-
     auto oldData = sessionChange->getOldData().data();
     ui->oldLessThen40SpinBox->setValue(oldData->getLessThen40()->getValue());
     ui->oldFrom40To44SpinBox->setValue(oldData->getFrom40To44()->getValue());
     ui->oldFrom45To49SpinBox->setValue(oldData->getFrom45To49()->getValue());
     ui->oldGreaterThen50SpinBox->setValue(oldData->getGreaterThen50()->getValue());
 
-//    connect(ui->oldLessThen40SpinBox, SIGNAL(valueChanged(const double)), oldData->getLessThen40().data(), SLOT(setValue(const double)));
-//    connect(ui->oldFrom40To44SpinBox, SIGNAL(valueChanged(const double)), oldData->getFrom40To44().data(), SLOT(setValue(const double)));
-//    connect(ui->oldFrom45To49SpinBox, SIGNAL(valueChanged(const double)), oldData->getFrom45To49().data(), SLOT(setValue(const double)));
-//    connect(ui->oldGreaterThen50SpinBox, SIGNAL(valueChanged(const double)), oldData->getGreaterThen50().data(), SLOT(setValue(const double)));
+    auto consumed = currentSession->getConsumed().data();
+    ui->lessThen40VolumeSpinBox->setValue(consumed->getLessThen40()->getValue());
+    ui->from40To44VolumeSpinBox->setValue(consumed->getFrom40To44()->getValue());
+    ui->from45To49VolumeSpinBox->setValue(consumed->getFrom45To49()->getValue());
+    ui->greaterThen50VolumeSpinBox->setValue(consumed->getGreaterThen50()->getValue());
 
     auto tariffs = inputSession->getTariffs().data();
     ui->heatedWaterTariffSpinBox->setValue(tariffs->getHeated()->getValue());
     ui->coldWaterTariffSpinBox->setValue(tariffs->getCold()->getValue());
 
-//    connect(ui->heatedWaterTariffSpinBox, SIGNAL(valueChanged(const double)), tariffs->getHeated().data(), SLOT(setValue(const double)));
-//    connect(ui->coldWaterTariffSpinBox, SIGNAL(valueChanged(const double)), tariffs->getCold().data(), SLOT(setValue(const double)));
-
     auto price = currentSession->getPrice().data();
     ui->toPaySpinBox->setValue(price->getValue());
 
-    //connect(price, &DoubleNumber::valueChanged, ui->toPaySpinBox, &QDoubleSpinBox::setValue);
-
     auto correctedHeatedVolume = currentSession->getCorrectedHeatedVolume().data();
     ui->giocSpinBox->setValue(correctedHeatedVolume->getValue());
-    //connect(correctedHeatedVolume, &DoubleNumber::valueChanged, ui->giocSpinBox, &QDoubleSpinBox::setValue);
 }

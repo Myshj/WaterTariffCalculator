@@ -38,7 +38,11 @@ SOURCES += main.cpp\
     bindings/numeric/twonumbersbinding.cpp \
     bindings/numeric/divisionbinding.cpp \
     bindings/numeric/subtractionbinding.cpp \
-    jsonutilities.cpp
+    jsonutilities.cpp \
+    connectors/doublespinboxtonumberconnector.cpp \
+    connectors/doublespinboxestoextendedmeterreadingconnector.cpp \
+    connectors/doublenumbertospinboxconnector.cpp \
+    connectors/extendedmeterreadingtodoublespinboxesconnector.cpp
 
 HEADERS  += mainwindow.h \
     doublenumber.h \
@@ -54,6 +58,10 @@ HEADERS  += mainwindow.h \
     bindings/numeric/twonumbersbinding.h \
     bindings/numeric/divisionbinding.h \
     bindings/numeric/subtractionbinding.h \
-    jsonutilities.h
+    jsonutilities.h \
+    connectors/doublespinboxtonumberconnector.h \
+    connectors/doublespinboxestoextendedmeterreadingconnector.h \
+    connectors/doublenumbertospinboxconnector.h \
+    connectors/extendedmeterreadingtodoublespinboxesconnector.h
 
 FORMS    += mainwindow.ui

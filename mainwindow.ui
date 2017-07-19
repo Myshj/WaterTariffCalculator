@@ -9,20 +9,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>960</width>
-    <height>480</height>
+    <width>870</width>
+    <height>290</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>960</width>
-    <height>480</height>
+    <width>0</width>
+    <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>960</width>
-    <height>480</height>
+    <height>1024</height>
    </size>
   </property>
   <property name="font">
@@ -39,8 +39,8 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>581</width>
-      <height>401</height>
+      <width>501</width>
+      <height>221</height>
      </rect>
     </property>
     <property name="toolTip">
@@ -49,440 +49,313 @@
     <property name="title">
      <string>Показания счетчика</string>
     </property>
-    <widget class="QGroupBox" name="currentMeterGroupBox">
-     <property name="geometry">
-      <rect>
-       <x>300</x>
-       <y>30</y>
-       <width>271</width>
-       <height>361</height>
-      </rect>
-     </property>
-     <property name="toolTip">
-      <string>Раздел текущих показаний счетчика</string>
-     </property>
-     <property name="title">
-      <string>Текущие</string>
-     </property>
-     <widget class="QGroupBox" name="currentExtendedDisplayGroupBox">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>160</y>
-        <width>251</width>
-        <height>191</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>Раздел расширенных показаний</string>
-      </property>
-      <property name="title">
-       <string>Расширенные</string>
-      </property>
-      <widget class="QWidget" name="formLayoutWidget_2">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>224</width>
-         <height>151</height>
-        </rect>
-       </property>
-       <layout class="QFormLayout" name="currentExtendedDisplayLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="currentLessThen40Label">
-          <property name="text">
-           <string>&lt; 40 C:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QDoubleSpinBox" name="currentLessThen40SpinBox">
-          <property name="toolTip">
-           <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
-          </property>
-          <property name="decimals">
-           <number>4</number>
-          </property>
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.000100000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="currentFrom40To44Label">
-          <property name="text">
-           <string>40 - 44 C:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QDoubleSpinBox" name="currentFrom40To44SpinBox">
-          <property name="toolTip">
-           <string>Сюда вносить данные из ячейки &quot;40 - 44C&quot;</string>
-          </property>
-          <property name="decimals">
-           <number>4</number>
-          </property>
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.000100000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="currentFrom45To49Label">
-          <property name="text">
-           <string>45 - 49 C:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QDoubleSpinBox" name="currentFrom45To49SpinBox">
-          <property name="toolTip">
-           <string>Сюда вносить данные из ячейки &quot;45 - 49 C&quot;</string>
-          </property>
-          <property name="decimals">
-           <number>4</number>
-          </property>
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.000100000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="currentGreaterThen50Label">
-          <property name="text">
-           <string>&gt; 50 C:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QDoubleSpinBox" name="currentGreaterThen50SpinBox">
-          <property name="toolTip">
-           <string>Сюда вносить данные из ячейки &quot;&gt; 50 C&quot;</string>
-          </property>
-          <property name="decimals">
-           <number>4</number>
-          </property>
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.000100000000000</double>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="currentMainDisplayGroupBox">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>251</width>
-        <height>121</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>Раздел основных показаний</string>
-      </property>
-      <property name="title">
-       <string>Основные</string>
-      </property>
-      <widget class="QWidget" name="formLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>229</width>
-         <height>80</height>
-        </rect>
-       </property>
-       <layout class="QFormLayout" name="currentMainDisplayLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="currentWaterLabel">
-          <property name="text">
-           <string>Вода:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QDoubleSpinBox" name="currentWaterSpinBox">
-          <property name="toolTip">
-           <string>Сюда вносить данные из ячейки &quot;Вода&quot;</string>
-          </property>
-          <property name="whatsThis">
-           <string>Сюда вносить данные из ячейки &quot;Вода&quot;</string>
-          </property>
-          <property name="decimals">
-           <number>4</number>
-          </property>
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.000100000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="currentHeatedLabel">
-          <property name="text">
-           <string>Подогрев:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QDoubleSpinBox" name="currentHeatedSpinBox">
-          <property name="toolTip">
-           <string>Сюда вносить данные из ячейки &quot;Подогрев&quot;</string>
-          </property>
-          <property name="decimals">
-           <number>4</number>
-          </property>
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.000100000000000</double>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-    </widget>
-    <widget class="QGroupBox" name="oldMeterGroupBox">
+    <widget class="QWidget" name="gridLayoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>30</y>
-       <width>271</width>
-       <height>361</height>
+       <width>482</width>
+       <height>175</height>
       </rect>
      </property>
-     <property name="toolTip">
-      <string>Раздел предыдущих показаний счетчика</string>
-     </property>
-     <property name="title">
-      <string>Предыдущие</string>
-     </property>
-     <widget class="QGroupBox" name="oldExtendedDisplayGroupBox">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>160</y>
-        <width>251</width>
-        <height>191</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>Раздел расширенных показаний</string>
-      </property>
-      <property name="title">
-       <string>Расширенные</string>
-      </property>
-      <widget class="QWidget" name="formLayoutWidget_5">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>224</width>
-         <height>151</height>
-        </rect>
-       </property>
-       <layout class="QFormLayout" name="oldExtendedDisplayLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="oldLessThen40Label">
-          <property name="text">
-           <string>&lt; 40 C:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QDoubleSpinBox" name="oldLessThen40SpinBox">
-          <property name="toolTip">
-           <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
-          </property>
-          <property name="decimals">
-           <number>4</number>
-          </property>
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.000100000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="oldFrom40To44Label">
-          <property name="text">
-           <string>40 - 44 C:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QDoubleSpinBox" name="oldFrom40To44SpinBox">
-          <property name="toolTip">
-           <string>Сюда вносить данные из ячейки &quot;40 - 44C&quot;</string>
-          </property>
-          <property name="decimals">
-           <number>4</number>
-          </property>
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.000100000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="oldFrom45To49Label">
-          <property name="text">
-           <string>45 - 49 C:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QDoubleSpinBox" name="oldFrom45To49SpinBox">
-          <property name="toolTip">
-           <string>Сюда вносить данные из ячейки &quot;45 - 49 C&quot;</string>
-          </property>
-          <property name="decimals">
-           <number>4</number>
-          </property>
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.000100000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="oldGreaterThen50Label">
-          <property name="text">
-           <string>&gt; 50 C:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QDoubleSpinBox" name="oldGreaterThen50SpinBox">
-          <property name="toolTip">
-           <string>Сюда вносить данные из ячейки &quot;&gt; 50 C&quot;</string>
-          </property>
-          <property name="decimals">
-           <number>4</number>
-          </property>
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.000100000000000</double>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="oldMainDisplayGroupBox">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>251</width>
-        <height>121</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>Раздел основных показаний</string>
-      </property>
-      <property name="title">
-       <string>Основные</string>
-      </property>
-      <widget class="QWidget" name="formLayoutWidget_6">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>229</width>
-         <height>80</height>
-        </rect>
-       </property>
-       <layout class="QFormLayout" name="oldMainDisplayLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="oldWaterLabel">
-          <property name="text">
-           <string>Вода:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QDoubleSpinBox" name="oldWaterSpinBox">
-          <property name="toolTip">
-           <string>Сюда вносить данные из ячейки &quot;Вода&quot;</string>
-          </property>
-          <property name="whatsThis">
-           <string>Сюда вносить данные из ячейки &quot;Вода&quot;</string>
-          </property>
-          <property name="decimals">
-           <number>4</number>
-          </property>
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.000100000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="oldHeatedLabel">
-          <property name="text">
-           <string>Подогрев:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QDoubleSpinBox" name="oldHeatedSpinBox">
-          <property name="toolTip">
-           <string>Сюда вносить данные из ячейки &quot;Подогрев&quot;</string>
-          </property>
-          <property name="decimals">
-           <number>4</number>
-          </property>
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.000100000000000</double>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="2" column="0">
+       <widget class="QLabel" name="oldFrom40To44Label">
+        <property name="text">
+         <string>40 - 44 C:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="oldFrom45To49Label">
+        <property name="text">
+         <string>45 - 49 C:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="oldGreaterThen50Label">
+        <property name="text">
+         <string>&gt; 50 C:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" alignment="Qt::AlignHCenter">
+       <widget class="QDoubleSpinBox" name="oldGreaterThen50SpinBox">
+        <property name="toolTip">
+         <string>Сюда вносить данные из ячейки &quot;&gt; 50 C&quot;</string>
+        </property>
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.000100000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDoubleSpinBox" name="oldLessThen40SpinBox">
+        <property name="toolTip">
+         <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
+        </property>
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.000100000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="oldLessThen40Label">
+        <property name="text">
+         <string>&lt; 40 C:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QDoubleSpinBox" name="oldFrom45To49SpinBox">
+        <property name="toolTip">
+         <string>Сюда вносить данные из ячейки &quot;45 - 49 C&quot;</string>
+        </property>
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.000100000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QDoubleSpinBox" name="oldFrom40To44SpinBox">
+        <property name="toolTip">
+         <string>Сюда вносить данные из ячейки &quot;40 - 44C&quot;</string>
+        </property>
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.000100000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QDoubleSpinBox" name="currentFrom40To44SpinBox">
+        <property name="toolTip">
+         <string>Сюда вносить данные из ячейки &quot;40 - 44C&quot;</string>
+        </property>
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.000100000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QDoubleSpinBox" name="currentFrom45To49SpinBox">
+        <property name="toolTip">
+         <string>Сюда вносить данные из ячейки &quot;45 - 49 C&quot;</string>
+        </property>
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.000100000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QDoubleSpinBox" name="currentGreaterThen50SpinBox">
+        <property name="toolTip">
+         <string>Сюда вносить данные из ячейки &quot;&gt; 50 C&quot;</string>
+        </property>
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.000100000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="oldMeterDataLabel">
+        <property name="text">
+         <string>Было</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="newMeterDataLabel">
+        <property name="text">
+         <string>Стало</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="meterCellLabel">
+        <property name="text">
+         <string>Ячейка</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QDoubleSpinBox" name="currentLessThen40SpinBox">
+        <property name="toolTip">
+         <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
+        </property>
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.000100000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="differenceLabel">
+        <property name="text">
+         <string>Разница</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QDoubleSpinBox" name="from40To44VolumeSpinBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="toolTip">
+         <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.000100000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QDoubleSpinBox" name="from45To49VolumeSpinBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="toolTip">
+         <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.000100000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="3" alignment="Qt::AlignHCenter">
+       <widget class="QDoubleSpinBox" name="greaterThen50VolumeSpinBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="toolTip">
+         <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.000100000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QDoubleSpinBox" name="lessThen40VolumeSpinBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="toolTip">
+         <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="decimals">
+         <number>4</number>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.000100000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QGroupBox" name="tariffsGroupBox">
     <property name="geometry">
      <rect>
-      <x>620</x>
+      <x>530</x>
       <y>10</y>
       <width>331</width>
-      <height>121</height>
+      <height>111</height>
      </rect>
     </property>
     <property name="toolTip">
@@ -497,7 +370,7 @@
        <x>10</x>
        <y>30</y>
        <width>315</width>
-       <height>80</height>
+       <height>71</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout">
@@ -553,10 +426,10 @@
    <widget class="QGroupBox" name="toPayGroupBox">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>150</y>
+      <x>530</x>
+      <y>120</y>
       <width>331</width>
-      <height>121</height>
+      <height>111</height>
      </rect>
     </property>
     <property name="toolTip">
@@ -571,7 +444,7 @@
        <x>10</x>
        <y>30</y>
        <width>313</width>
-       <height>80</height>
+       <height>71</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_2">
@@ -639,8 +512,8 @@
    <widget class="QPushButton" name="saveButton">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>372</y>
+      <x>20</x>
+      <y>240</y>
       <width>121</width>
       <height>41</height>
      </rect>
@@ -652,8 +525,8 @@
    <widget class="QPushButton" name="loadButton">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>370</y>
+      <x>400</x>
+      <y>240</y>
       <width>121</width>
       <height>41</height>
      </rect>
@@ -662,6 +535,13 @@
      <string>Загрузить</string>
     </property>
    </widget>
+   <zorder>meterDisplayGroupBox</zorder>
+   <zorder>tariffsGroupBox</zorder>
+   <zorder>toPayGroupBox</zorder>
+   <zorder>saveButton</zorder>
+   <zorder>loadButton</zorder>
+   <zorder>oldLessThen40SpinBox</zorder>
+   <zorder>oldLessThen40Label</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

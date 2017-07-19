@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QPointer>
+#include <QSharedPointer>
 
 #include "session.h"
 
@@ -21,11 +21,18 @@ public:
 private slots:
     void on_saveButton_clicked();
 
+    void on_loadButton_clicked();
+
 private:
+    void renderCurrentSession();
+    void bindControlsToCurrentSession();
+
+    void saveCurrentSession();
+    void loadSession();
 
     Ui::MainWindow *ui;
 
-    QPointer<Session> currentSession;
+    QSharedPointer<Session> currentSession;
 };
 
 #endif // MAINWINDOW_H

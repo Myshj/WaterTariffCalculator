@@ -36,7 +36,9 @@ SOURCES += main.cpp\
     bindings/binding.cpp \
     bindings/numeric/numericbinding.cpp \
     bindings/numeric/twonumbersbinding.cpp \
-    bindings/numeric/divisionbinding.cpp
+    bindings/numeric/divisionbinding.cpp \
+    bindings/numeric/subtractionbinding.cpp \
+    jsonutilities.cpp
 
 HEADERS  += mainwindow.h \
     doublenumber.h \
@@ -50,6 +52,8 @@ HEADERS  += mainwindow.h \
     bindings/binding.h \
     bindings/numeric/numericbinding.h \
     bindings/numeric/twonumbersbinding.h \
-    bindings/numeric/divisionbinding.h
+    bindings/numeric/divisionbinding.h \
+    bindings/numeric/subtractionbinding.h \
+    jsonutilities.h
 
 FORMS    += mainwindow.ui

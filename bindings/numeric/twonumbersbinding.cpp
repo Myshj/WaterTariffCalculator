@@ -9,8 +9,8 @@ TwoNumbersBinding::TwoNumbersBinding(
     a(a),
     b(b)
 {
-    connect(a.data(), SIGNAL(valueChanged(const double)), this, SLOT(transmit()));
-    connect(b.data(), SIGNAL(valueChanged(const double)), this, SLOT(transmit()));
+    connect(a.data(), &DoubleNumber::valueChanged, this, &TwoNumbersBinding::transmit);
+    connect(b.data(), &DoubleNumber::valueChanged, this, &TwoNumbersBinding::transmit);
 }
 
 QSharedPointer<DoubleNumber> TwoNumbersBinding::getA() const

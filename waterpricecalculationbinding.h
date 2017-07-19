@@ -8,10 +8,12 @@
 #include "doublenumber.h"
 #include "tariffsforwater.h"
 
+#include "bindings/numeric/numericbinding.h"
+
 /**
  * @brief Calculates overall price of consumed water based on given tariffs and transmits it to a given object.
  */
-class WaterPriceCalculationBinding : public QObject
+class WaterPriceCalculationBinding : public NumericBinding
 {
     Q_OBJECT
 public:
@@ -21,8 +23,6 @@ public:
             const QSharedPointer<DoubleNumber> price,
             QObject *parent = 0
     );
-
-    ~WaterPriceCalculationBinding();
 
 signals:
 

@@ -7,20 +7,20 @@
 #include "extendedmeterreadingchange.h"
 #include "extendedmeterreading.h"
 
+#include "bindings/binding.h"
+#include "bindings/numeric/subtractionbinding.h"
+
 /**
  * @brief Calculates volume of consumed water and transmits it to a given object.
  */
-class ConsumedWaterCalculationBinding : public QObject
+class ConsumedWaterCalculationBinding : public Binding
 {
-    Q_OBJECT
 public:
     explicit ConsumedWaterCalculationBinding(
             const QSharedPointer<ExtendedMeterReadingChange>& change,
             const QSharedPointer<ExtendedMeterReading>& consumed,
             QObject *parent = 0
     );
-
-    ~ConsumedWaterCalculationBinding();
 
     QSharedPointer<ExtendedMeterReadingChange> getChange() const;
 
@@ -31,12 +31,21 @@ signals:
 public slots:
 
 private slots:
-    void transmit();
+
 
 private:
 
     const QSharedPointer<ExtendedMeterReadingChange> change;
     const QSharedPointer<ExtendedMeterReading> consumed;
+
+    const QSharedPointer<SubtractionBinding> lessThen40Binding;
+    const QSharedPointer<SubtractionBinding> from40To44Binding;
+    const QSharedPointer<SubtractionBinding> from45To49Binding;
+    const QSharedPointer<SubtractionBinding> greaterThen50Binding;
+
+    // Binding interface
+protected slots:
+    void transmit() override;
 };
 
 #endif // CONSUMEDWATERCALCULATIONBINDING_H

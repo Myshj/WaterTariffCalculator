@@ -6,7 +6,7 @@ WaterPriceCalculationBinding::WaterPriceCalculationBinding(
         const QSharedPointer<TariffsForWater> tariffs,
         const QSharedPointer<DoubleNumber> price,
         QObject *parent
-) : QObject(parent),
+) : NumericBinding (price, parent),
     consumed(consumed),
     tariffs(tariffs),
     price(price)
@@ -18,17 +18,6 @@ WaterPriceCalculationBinding::WaterPriceCalculationBinding(
 
     connect(tariffs.data()->getCold().data(), &DoubleNumber::valueChanged, this, &WaterPriceCalculationBinding::transmit);
     connect(tariffs.data()->getHeated().data(), &DoubleNumber::valueChanged, this, &WaterPriceCalculationBinding::transmit);
-}
-
-WaterPriceCalculationBinding::~WaterPriceCalculationBinding()
-{
-    disconnect(consumed.data()->getLessThen40().data(), &DoubleNumber::valueChanged, this, &WaterPriceCalculationBinding::transmit);
-    disconnect(consumed.data()->getFrom40To44().data(), &DoubleNumber::valueChanged, this, &WaterPriceCalculationBinding::transmit);
-    disconnect(consumed.data()->getFrom45To49().data(), &DoubleNumber::valueChanged, this, &WaterPriceCalculationBinding::transmit);
-    disconnect(consumed.data()->getGreaterThen50().data(), &DoubleNumber::valueChanged, this, &WaterPriceCalculationBinding::transmit);
-
-    disconnect(tariffs.data()->getCold().data(), &DoubleNumber::valueChanged, this, &WaterPriceCalculationBinding::transmit);
-    disconnect(tariffs.data()->getHeated().data(), &DoubleNumber::valueChanged, this, &WaterPriceCalculationBinding::transmit);
 }
 
 void WaterPriceCalculationBinding::transmit()

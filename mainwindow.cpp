@@ -46,3 +46,27 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+#include <QJsonDocument>
+#include <QFile>
+#include <QString>
+#include "jsonutilities.h"
+
+void MainWindow::on_saveButton_clicked()
+{
+    qDebug() << "Save requested!";
+
+    auto savedSession = JsonUtilities::saveSession(*currentSession);
+
+    QFile saveFile(QStringLiteral("save.json"));
+
+    if (!saveFile.open(QIODevice::WriteOnly)) {
+        qWarning("Couldn't open save file.");
+        return;
+    }
+
+    QJsonDocument saveDocument(savedSession);
+    saveFile.write(saveDocument.toJson());
+
+    //qDebug() << savedSession;
+}

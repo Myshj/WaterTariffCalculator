@@ -19,16 +19,31 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_saveButton_clicked();
 
-    void on_loadButton_clicked();
+    void on_quit_triggered();
+
+    void on_open_triggered();
+
+    void on_save_triggered();
+
+    void on_newSession_triggered();
+
+    void on_oldLessThen40SpinBox_valueChanged(double arg1);
+
+    void on_oldFrom45To49SpinBox_valueChanged(double arg1);
+
+    void on_oldFrom40To44SpinBox_valueChanged(double arg1);
+
+    void on_oldGreaterThen50SpinBox_valueChanged(double arg1);
 
 private:
     void renderCurrentSession();
     void bindControlsToCurrentSession();
 
-    void saveCurrentSession();
-    void loadSession();
+    void saveCurrentSession(const QString& saveFileName);
+    void loadSession(const QString& saveFileName);
+
+    void loadDefaultSession();
 
     Ui::MainWindow *ui;
 

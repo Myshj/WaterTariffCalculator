@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QFileDialog>
+
 #include <QtDebug>
 #include <QSharedPointer>
 #include <QDoubleSpinBox>
@@ -20,22 +22,15 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    currentSession(new Session())
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    renderCurrentSession();
-    bindControlsToCurrentSession();
+    loadDefaultSession();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::on_saveButton_clicked()
-{
-    saveCurrentSession();
 }
 
 void MainWindow::bindControlsToCurrentSession()
@@ -82,11 +77,11 @@ void MainWindow::bindControlsToCurrentSession()
     DoubleNumberToSpinBoxConnector::connect(*correctedHeatedVolume, *ui->giocSpinBox);
 }
 
-void MainWindow::saveCurrentSession()
+void MainWindow::saveCurrentSession(const QString& saveFileName)
 {
     auto savedSession = JsonUtilities::saveSession(*currentSession);
 
-    QFile saveFile(QStringLiteral("save.json"));
+    QFile saveFile(saveFileName);
 
     if (!saveFile.open(QIODevice::WriteOnly)) {
         qWarning("Couldn't open save file.");
@@ -97,9 +92,9 @@ void MainWindow::saveCurrentSession()
     saveFile.write(saveDocument.toJson());
 }
 
-void MainWindow::loadSession()
+void MainWindow::loadSession(const QString& saveFileName)
 {
-    QFile saveFile(QStringLiteral("save.json"));
+    QFile saveFile(saveFileName);
 
     if (!saveFile.open(QIODevice::ReadOnly)) {
         qWarning("Couldn't open save file.");
@@ -115,9 +110,11 @@ void MainWindow::loadSession()
     bindControlsToCurrentSession();
 }
 
-void MainWindow::on_loadButton_clicked()
+void MainWindow::loadDefaultSession()
 {
-    loadSession();
+    currentSession = QSharedPointer<Session>::create();
+    renderCurrentSession();
+    bindControlsToCurrentSession();
 }
 
 void MainWindow::renderCurrentSession()
@@ -126,17 +123,17 @@ void MainWindow::renderCurrentSession()
 
     auto sessionChange = inputSession->getChange().data();
 
-    auto newData = sessionChange->getNewData().data();
-    ui->currentLessThen40SpinBox->setValue(newData->getLessThen40()->getValue());
-    ui->currentFrom40To44SpinBox->setValue(newData->getFrom40To44()->getValue());
-    ui->currentFrom45To49SpinBox->setValue(newData->getFrom45To49()->getValue());
-    ui->currentGreaterThen50SpinBox->setValue(newData->getGreaterThen50()->getValue());
-
     auto oldData = sessionChange->getOldData().data();
     ui->oldLessThen40SpinBox->setValue(oldData->getLessThen40()->getValue());
     ui->oldFrom40To44SpinBox->setValue(oldData->getFrom40To44()->getValue());
     ui->oldFrom45To49SpinBox->setValue(oldData->getFrom45To49()->getValue());
     ui->oldGreaterThen50SpinBox->setValue(oldData->getGreaterThen50()->getValue());
+
+    auto newData = sessionChange->getNewData().data();
+    ui->currentLessThen40SpinBox->setValue(newData->getLessThen40()->getValue());
+    ui->currentFrom40To44SpinBox->setValue(newData->getFrom40To44()->getValue());
+    ui->currentFrom45To49SpinBox->setValue(newData->getFrom45To49()->getValue());
+    ui->currentGreaterThen50SpinBox->setValue(newData->getGreaterThen50()->getValue());
 
     auto consumed = currentSession->getConsumed().data();
     ui->lessThen40VolumeSpinBox->setValue(consumed->getLessThen40()->getValue());
@@ -153,4 +150,63 @@ void MainWindow::renderCurrentSession()
 
     auto correctedHeatedVolume = currentSession->getCorrectedHeatedVolume().data();
     ui->giocSpinBox->setValue(correctedHeatedVolume->getValue());
+}
+
+void MainWindow::on_quit_triggered()
+{
+    qDebug() << "quit requested";
+    close();
+}
+
+void MainWindow::on_open_triggered()
+{
+    auto saveFileName = QFileDialog::getOpenFileName(
+                this,
+                tr("Открыть сессию"),
+                "",
+                tr("Сессии (*.json);; Все (*)")
+    );
+    if (!saveFileName.isNull())
+    {
+        loadSession(saveFileName);
+    }
+}
+
+void MainWindow::on_save_triggered()
+{
+    auto saveFileName = QFileDialog::getSaveFileName(
+                this,
+                tr("Сохранить сессию"),
+                "",
+                tr("Сессии (*json);; Все (*)")
+    );
+    if (!saveFileName.isNull())
+    {
+        saveCurrentSession(saveFileName);
+    }
+}
+
+void MainWindow::on_newSession_triggered()
+{
+    loadDefaultSession();
+}
+
+void MainWindow::on_oldLessThen40SpinBox_valueChanged(double arg1)
+{
+    ui->currentLessThen40SpinBox->setMinimum(arg1);
+}
+
+void MainWindow::on_oldFrom45To49SpinBox_valueChanged(double arg1)
+{
+    ui->currentFrom45To49SpinBox->setMinimum(arg1);
+}
+
+void MainWindow::on_oldFrom40To44SpinBox_valueChanged(double arg1)
+{
+    ui->currentFrom40To44SpinBox->setMinimum(arg1);
+}
+
+void MainWindow::on_oldGreaterThen50SpinBox_valueChanged(double arg1)
+{
+    ui->currentGreaterThen50SpinBox->setMinimum(arg1);
 }

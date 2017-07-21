@@ -1,22 +1,20 @@
 #include "tariffsforwater.h"
 
 TariffsForWater::TariffsForWater(
-        const QSharedPointer<DoubleNumber>& cold,
-        const QSharedPointer<DoubleNumber>& heated,
         QObject *parent
 ) : QObject(parent),
-    cold(cold),
-    heated(heated)
+    cold(new DoubleNumber(0.0, this)),
+    heated(new DoubleNumber(0.0, this))
 {
 
 }
 
-QSharedPointer<DoubleNumber> TariffsForWater::getCold() const
+DoubleNumber* TariffsForWater::getCold() const
 {
     return cold;
 }
 
-QSharedPointer<DoubleNumber> TariffsForWater::getHeated() const
+DoubleNumber* TariffsForWater::getHeated() const
 {
     return heated;
 }

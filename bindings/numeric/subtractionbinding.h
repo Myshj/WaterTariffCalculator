@@ -8,9 +8,6 @@ class SubtractionBinding : public TwoNumbersBinding
 {
 public:
     explicit SubtractionBinding(
-            const QSharedPointer<DoubleNumber>& a,
-            const QSharedPointer<DoubleNumber>& b,
-            const QSharedPointer<DoubleNumber>& target,
             QObject* parent = 0
     );
 

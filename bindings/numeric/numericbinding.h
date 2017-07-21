@@ -14,14 +14,13 @@ class NumericBinding : public Binding
 {
 public:
     explicit NumericBinding(
-            const QSharedPointer<DoubleNumber>& target,
             QObject* parent = 0
     );
 
-    QSharedPointer<DoubleNumber> getTarget() const;
+    DoubleNumber* getTarget() const;
 
 protected:
-    const QSharedPointer<DoubleNumber> target;
+    DoubleNumber* target;
 };
 
 #endif // NUMERICBINDING_H

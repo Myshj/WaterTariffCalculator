@@ -17,14 +17,12 @@ class ConsumedWaterCalculationBinding : public Binding
 {
 public:
     explicit ConsumedWaterCalculationBinding(
-            const QSharedPointer<ExtendedMeterReadingChange>& change,
-            const QSharedPointer<ExtendedMeterReading>& consumed,
             QObject *parent = 0
     );
 
-    QSharedPointer<ExtendedMeterReadingChange> getChange() const;
+    ExtendedMeterReadingChange* getChange() const;
 
-    QSharedPointer<ExtendedMeterReading> getConsumed() const;
+    ExtendedMeterReading* getConsumed() const;
 
 signals:
 
@@ -35,13 +33,13 @@ private slots:
 
 private:
 
-    const QSharedPointer<ExtendedMeterReadingChange> change;
-    const QSharedPointer<ExtendedMeterReading> consumed;
+    ExtendedMeterReadingChange* change;
+    ExtendedMeterReading* consumed;
 
-    const QSharedPointer<SubtractionBinding> lessThen40Binding;
-    const QSharedPointer<SubtractionBinding> from40To44Binding;
-    const QSharedPointer<SubtractionBinding> from45To49Binding;
-    const QSharedPointer<SubtractionBinding> greaterThen50Binding;
+    SubtractionBinding* lessThen40Binding;
+    SubtractionBinding* from40To44Binding;
+    SubtractionBinding* from45To49Binding;
+    SubtractionBinding* greaterThen50Binding;
 
     // Binding interface
 protected slots:

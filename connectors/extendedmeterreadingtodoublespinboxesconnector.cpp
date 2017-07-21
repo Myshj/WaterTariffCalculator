@@ -8,8 +8,8 @@ void ExtendedMeterReadingToDoubleSpinBoxesConnector::connect(
         const QDoubleSpinBox &greaterThen50SpinBox
 )
 {
-    QObject::connect(extendedMeterReading.getLessThen40().data(), SIGNAL(valueChanged(const double)), &lessThen40SpinBox, SLOT(setValue(const double)));
-    QObject::connect(extendedMeterReading.getFrom40To44().data(), SIGNAL(valueChanged(const double)), &from40To44SpinBox, SLOT(setValue(const double)));
-    QObject::connect(extendedMeterReading.getFrom45To49().data(), SIGNAL(valueChanged(const double)), &from45To49SpinBox, SLOT(setValue(const double)));
-    QObject::connect(extendedMeterReading.getGreaterThen50().data(), SIGNAL(valueChanged(const double)), &greaterThen50SpinBox, SLOT(setValue(const double)));
+    QObject::connect(extendedMeterReading.getLessThen40(), SIGNAL(valueChanged(const double)), &lessThen40SpinBox, SLOT(setValue(const double)));
+    QObject::connect(extendedMeterReading.getFrom40To44(), SIGNAL(valueChanged(const double)), &from40To44SpinBox, SLOT(setValue(const double)));
+    QObject::connect(extendedMeterReading.getFrom45To49(), SIGNAL(valueChanged(const double)), &from45To49SpinBox, SLOT(setValue(const double)));
+    QObject::connect(extendedMeterReading.getGreaterThen50(), SIGNAL(valueChanged(const double)), &greaterThen50SpinBox, SLOT(setValue(const double)));
 }

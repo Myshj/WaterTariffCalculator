@@ -13,24 +13,30 @@
 class ExtendedMeterReadingInputSession : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(ExtendedMeterReadingChange* change READ getChange)
+    Q_PROPERTY(TariffsForWater* tariffs READ getTariffs)
 public:
     explicit ExtendedMeterReadingInputSession(
-            const QSharedPointer<ExtendedMeterReadingChange>& change = QSharedPointer<ExtendedMeterReadingChange>::create(),
-            const QSharedPointer<TariffsForWater>& tariffs = QSharedPointer<TariffsForWater>::create(),
             QObject *parent = 0
     );
 
-    QSharedPointer<ExtendedMeterReadingChange> getChange() const;
+    ExtendedMeterReadingChange* getChange() const;
 
-    QSharedPointer<TariffsForWater> getTariffs() const;
+    TariffsForWater* getTariffs() const;
 
 signals:
 
 public slots:
 
+    void deepCopy(ExtendedMeterReadingInputSession* other)
+    {
+        change->deepCopy(other->change);
+        tariffs->deepCopy(other->tariffs);
+    }
+
 private:
-    const QSharedPointer<ExtendedMeterReadingChange> change;
-    const QSharedPointer<TariffsForWater> tariffs;
+    ExtendedMeterReadingChange* change;
+    TariffsForWater* tariffs;
 };
 
 #endif // EXTENDEDMETERREADINGINPUTSESSION_H

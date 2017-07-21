@@ -1,22 +1,20 @@
 #include "extendedmeterreadinginputsession.h"
 
 ExtendedMeterReadingInputSession::ExtendedMeterReadingInputSession(
-        const QSharedPointer<ExtendedMeterReadingChange>& change,
-        const QSharedPointer<TariffsForWater>& tariffs,
         QObject *parent
 ) : QObject(parent),
-    change(change),
-    tariffs(tariffs)
+    change(new ExtendedMeterReadingChange(this)),
+    tariffs(new TariffsForWater(this))
 {
 
 }
 
-QSharedPointer<ExtendedMeterReadingChange> ExtendedMeterReadingInputSession::getChange() const
+ExtendedMeterReadingChange* ExtendedMeterReadingInputSession::getChange() const
 {
     return change;
 }
 
-QSharedPointer<TariffsForWater> ExtendedMeterReadingInputSession::getTariffs() const
+TariffsForWater* ExtendedMeterReadingInputSession::getTariffs() const
 {
     return tariffs;
 }

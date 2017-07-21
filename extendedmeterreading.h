@@ -12,33 +12,34 @@
 class ExtendedMeterReading : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(DoubleNumber* lessThen40 READ getLessThen40)
+    Q_PROPERTY(DoubleNumber* from40To44 READ getFrom40To44)
+    Q_PROPERTY(DoubleNumber* from45To49 READ getFrom45To49)
+    Q_PROPERTY(DoubleNumber* greaterThen50 READ getGreaterThen50)
 public:
     explicit ExtendedMeterReading(
-            const QSharedPointer<DoubleNumber>& lessThen40 = QSharedPointer<DoubleNumber>::create(),
-            const QSharedPointer<DoubleNumber>& from40To44 = QSharedPointer<DoubleNumber>::create(),
-            const QSharedPointer<DoubleNumber>& from45To49 = QSharedPointer<DoubleNumber>::create(),
-            const QSharedPointer<DoubleNumber>& greaterThen50 = QSharedPointer<DoubleNumber>::create(),
             QObject *parent = 0
-            );
+    );
 
-    QSharedPointer<DoubleNumber> getLessThen40() const;
+    DoubleNumber* getLessThen40() const;
 
-    QSharedPointer<DoubleNumber> getFrom40To44() const;
+    DoubleNumber* getFrom40To44() const;
 
-    QSharedPointer<DoubleNumber> getFrom45To49() const;
+    DoubleNumber* getFrom45To49() const;
 
-    QSharedPointer<DoubleNumber> getGreaterThen50() const;
+    DoubleNumber* getGreaterThen50() const;
 
 public slots:
 
+    void deepCopy(ExtendedMeterReading* other);
 
 signals:
 
 private:
-    const QSharedPointer<DoubleNumber> lessThen40;
-    const QSharedPointer<DoubleNumber> from40To44;
-    const QSharedPointer<DoubleNumber> from45To49;
-    const QSharedPointer<DoubleNumber> greaterThen50;
+    DoubleNumber* lessThen40;
+    DoubleNumber* from40To44;
+    DoubleNumber* from45To49;
+    DoubleNumber* greaterThen50;
 };
 
 #endif // EXTENDEDMETERREADING_H

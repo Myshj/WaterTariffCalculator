@@ -1,50 +1,53 @@
 #include "consumedwatercalculationbinding.h"
 #include <QtDebug>
 
+#include "connectors/doublenumberstotwonumbersbindingconnector.h"
+
 ConsumedWaterCalculationBinding::ConsumedWaterCalculationBinding(
-        const QSharedPointer<ExtendedMeterReadingChange>& change,
-        const QSharedPointer<ExtendedMeterReading>& consumed,
         QObject *parent
 ) : Binding (parent),
-    change(change),
-    consumed(consumed),
-    lessThen40Binding(
-        new SubtractionBinding(
-            change.data()->getNewData().data()->getLessThen40(),
-            change.data()->getOldData().data()->getLessThen40(),
-            consumed.data()->getLessThen40()
-        )
-    ),
-    from40To44Binding(
-        new SubtractionBinding(
-            change.data()->getNewData().data()->getFrom40To44(),
-            change.data()->getOldData().data()->getFrom40To44(),
-            consumed.data()->getFrom40To44()
-        )
-    ),
-    from45To49Binding(
-        new SubtractionBinding(
-            change.data()->getNewData().data()->getFrom45To49(),
-            change.data()->getOldData().data()->getFrom45To49(),
-            consumed.data()->getFrom45To49()
-        )
-    ),
-    greaterThen50Binding(
-        new SubtractionBinding(
-            change.data()->getNewData().data()->getGreaterThen50(),
-            change.data()->getOldData().data()->getGreaterThen50(),
-            consumed.data()->getGreaterThen50()
-        )
-    )
+    change(new ExtendedMeterReadingChange(this)),
+    consumed(new ExtendedMeterReading(this)),
+    lessThen40Binding(new SubtractionBinding(this)),
+    from40To44Binding(new SubtractionBinding(this)),
+    from45To49Binding(new SubtractionBinding(this)),
+    greaterThen50Binding(new SubtractionBinding(this))
 {
+    DoubleNumbersToTwoNumbersBindingConnector::connect(
+                this->change->getNewData()->getLessThen40(),
+                this->change->getOldData()->getLessThen40(),
+                this->consumed->getLessThen40(),
+                this->lessThen40Binding
+    );
+
+    DoubleNumbersToTwoNumbersBindingConnector::connect(
+                this->change->getNewData()->getFrom40To44(),
+                this->change->getOldData()->getFrom40To44(),
+                this->consumed->getFrom40To44(),
+                this->from40To44Binding
+    );
+
+    DoubleNumbersToTwoNumbersBindingConnector::connect(
+                this->change->getNewData()->getFrom45To49(),
+                this->change->getOldData()->getFrom45To49(),
+                this->consumed->getFrom45To49(),
+                this->from45To49Binding
+    );
+
+    DoubleNumbersToTwoNumbersBindingConnector::connect(
+                this->change->getNewData()->getGreaterThen50(),
+                this->change->getOldData()->getGreaterThen50(),
+                this->consumed->getGreaterThen50(),
+                this->greaterThen50Binding
+    );
 }
 
-QSharedPointer<ExtendedMeterReadingChange> ConsumedWaterCalculationBinding::getChange() const
+ExtendedMeterReadingChange* ConsumedWaterCalculationBinding::getChange() const
 {
     return change;
 }
 
-QSharedPointer<ExtendedMeterReading> ConsumedWaterCalculationBinding::getConsumed() const
+ExtendedMeterReading* ConsumedWaterCalculationBinding::getConsumed() const
 {
     return consumed;
 }

@@ -27,9 +27,11 @@ public:
         return ret;
     }
 
-    static QSharedPointer<DoubleNumber> loadDoubleNumber(const QJsonObject& json)
+    static DoubleNumber* loadDoubleNumber(const QJsonObject& json)
     {
-        return QSharedPointer<DoubleNumber>::create(json["value"].toDouble());
+        auto ret = new DoubleNumber();
+        ret->setValue(json["value"].toDouble());
+        return ret;
     }
 
     static QJsonObject saveExtendedMeterReading(const ExtendedMeterReading& extendedMeterReading)
@@ -45,14 +47,26 @@ public:
         return ret;
     }
 
-    static QSharedPointer<ExtendedMeterReading> loadExtendedMeterReading(const QJsonObject& json)
+    static ExtendedMeterReading* loadExtendedMeterReading(const QJsonObject& json)
     {
-        return QSharedPointer<ExtendedMeterReading>::create(
-                    loadDoubleNumber(json["lessThen40"].toObject()),
-                    loadDoubleNumber(json["from40To44"].toObject()),
-                    loadDoubleNumber(json["from45To49"].toObject()),
+        auto ret = new ExtendedMeterReading();
+        ret->getLessThen40()->deepCopy(
+                    loadDoubleNumber(json["lessThen40"].toObject())
+        );
+
+        ret->getFrom40To44()->deepCopy(
+                    loadDoubleNumber(json["from40To44"].toObject())
+        );
+
+        ret->getFrom45To49()->deepCopy(
+                    loadDoubleNumber(json["from45To49"].toObject())
+        );
+
+        ret->getGreaterThen50()->deepCopy(
                     loadDoubleNumber(json["greaterThen50"].toObject())
         );
+
+        return ret;
     }
 
     static QJsonObject saveExtendedMeterReadingChange(const ExtendedMeterReadingChange& extendedMeterReadingChange)
@@ -66,12 +80,16 @@ public:
         return ret;
     }
 
-    static QSharedPointer<ExtendedMeterReadingChange> loadExtendedMeterReadingChange(const QJsonObject& json)
+    static ExtendedMeterReadingChange* loadExtendedMeterReadingChange(const QJsonObject& json)
     {
-        return QSharedPointer<ExtendedMeterReadingChange>::create(
-                    loadExtendedMeterReading(json["oldData"].toObject()),
+        auto ret = new ExtendedMeterReadingChange();
+        ret->getOldData()->deepCopy(
+                    loadExtendedMeterReading(json["oldData"].toObject())
+        );
+        ret->getNewData()->deepCopy(
                     loadExtendedMeterReading(json["newData"].toObject())
         );
+        return ret;
     }
 
     static QJsonObject saveTariffsForWater(const TariffsForWater& tariffsForWater)
@@ -85,12 +103,12 @@ public:
         return ret;
     }
 
-    static QSharedPointer<TariffsForWater> loadTariffsForWater(const QJsonObject& json)
+    static TariffsForWater* loadTariffsForWater(const QJsonObject& json)
     {
-        return QSharedPointer<TariffsForWater>::create(
-                    loadDoubleNumber(json["cold"].toObject()),
-                    loadDoubleNumber(json["heated"].toObject())
-        );
+        auto ret = new TariffsForWater();
+        ret->getCold()->deepCopy(loadDoubleNumber(json["cold"].toObject()));
+        ret->getHeated()->deepCopy(loadDoubleNumber(json["heated"].toObject()));
+        return ret;
     }
 
     static QJsonObject saveExtendedMeterReadingInputSession(const ExtendedMeterReadingInputSession& extendedMeterReadingInputSession)
@@ -104,12 +122,12 @@ public:
         return ret;
     }
 
-    static QSharedPointer<ExtendedMeterReadingInputSession> loadExtendedMeterReadingInputSession(const QJsonObject& json)
+    static ExtendedMeterReadingInputSession* loadExtendedMeterReadingInputSession(const QJsonObject& json)
     {
-        return QSharedPointer<ExtendedMeterReadingInputSession>::create(
-                    loadExtendedMeterReadingChange(json["change"].toObject()),
-                    loadTariffsForWater(json["tariffs"].toObject())
-        );
+        auto ret = new ExtendedMeterReadingInputSession();
+        ret->getChange()->deepCopy(loadExtendedMeterReadingChange(json["change"].toObject()));
+        ret->getTariffs()->deepCopy(loadTariffsForWater(json["tariffs"].toObject()));
+        return ret;
     }
 
     static QJsonObject saveSession(const Session& session)
@@ -125,14 +143,14 @@ public:
         return ret;
     }
 
-    static QSharedPointer<Session> loadSession(const QJsonObject& json)
+    static Session* loadSession(const QJsonObject& json)
     {
-        return QSharedPointer<Session>::create(
-                    loadExtendedMeterReadingInputSession(json["input"].toObject()),
-                    loadExtendedMeterReading(json["consumed"].toObject()),
-                    loadDoubleNumber(json["price"].toObject()),
-                    loadDoubleNumber(json["correctedHeatedVolume"].toObject())
-        );
+        auto ret = new Session();
+        ret->getInput()->deepCopy(loadExtendedMeterReadingInputSession(json["input"].toObject()));
+        ret->getConsumed()->deepCopy(loadExtendedMeterReading(json["consumed"].toObject()));
+        ret->getPrice()->deepCopy(loadDoubleNumber(json["price"].toObject()));
+        ret->getCorrectedHeatedVolume()->deepCopy(loadDoubleNumber(json["correctedHeatedVolume"].toObject()));
+        return ret;
     }
 
 private:

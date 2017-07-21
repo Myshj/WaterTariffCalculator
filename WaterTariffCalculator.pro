@@ -5,11 +5,18 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT += charts qml quick widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = WaterTariffCalculator
 TEMPLATE = app
+
+# Additional import path used to resolve QML modules in Qt Creator's code model
+QML_IMPORT_PATH =
+
+# Additional import path used to resolve QML modules just for Qt Quick Designer
+QML_DESIGNER_IMPORT_PATH =
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -42,7 +49,15 @@ SOURCES += main.cpp\
     connectors/doublespinboxtonumberconnector.cpp \
     connectors/doublespinboxestoextendedmeterreadingconnector.cpp \
     connectors/doublenumbertospinboxconnector.cpp \
-    connectors/extendedmeterreadingtodoublespinboxesconnector.cpp
+    connectors/extendedmeterreadingtodoublespinboxesconnector.cpp \
+    statisticswindow.cpp \
+    connectors/doublenumbertonumberconnector.cpp \
+    connectors/doublenumberstotwonumbersbindingconnector.cpp \
+    connectors/extendedmeterreadingconnector.cpp \
+    connectors/extendedmeterreadingchangeconnector.cpp \
+    connectors/datatoconsumedwatercalculationbindingconnector.cpp \
+    connectors/datatowaterpricecalculationbindingconnector.cpp \
+    connectors/tariffsforwaterconnector.cpp
 
 HEADERS  += mainwindow.h \
     doublenumber.h \
@@ -62,6 +77,18 @@ HEADERS  += mainwindow.h \
     connectors/doublespinboxtonumberconnector.h \
     connectors/doublespinboxestoextendedmeterreadingconnector.h \
     connectors/doublenumbertospinboxconnector.h \
-    connectors/extendedmeterreadingtodoublespinboxesconnector.h
+    connectors/extendedmeterreadingtodoublespinboxesconnector.h \
+    statisticswindow.h \
+    connectors/doublenumbertonumberconnector.h \
+    connectors/doublenumberstotwonumbersbindingconnector.h \
+    connectors/extendedmeterreadingconnector.h \
+    connectors/extendedmeterreadingchangeconnector.h \
+    connectors/datatoconsumedwatercalculationbindingconnector.h \
+    connectors/datatowaterpricecalculationbindingconnector.h \
+    connectors/tariffsforwaterconnector.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    statisticswindow.ui
+
+RESOURCES += \
+    qml.qrc

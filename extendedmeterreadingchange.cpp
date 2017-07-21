@@ -1,22 +1,20 @@
 #include "extendedmeterreadingchange.h"
 
 ExtendedMeterReadingChange::ExtendedMeterReadingChange(
-        const QSharedPointer<ExtendedMeterReading>& oldData,
-        const QSharedPointer<ExtendedMeterReading>& newData,
         QObject *parent
 ) : QObject(parent),
-    oldData(oldData),
-    newData(newData)
+    oldData(new ExtendedMeterReading(this)),
+    newData(new ExtendedMeterReading(this))
 {
 
 }
 
-QSharedPointer<ExtendedMeterReading> ExtendedMeterReadingChange::getOldData() const
+ExtendedMeterReading* ExtendedMeterReadingChange::getOldData() const
 {
     return oldData;
 }
 
-QSharedPointer<ExtendedMeterReading> ExtendedMeterReadingChange::getNewData() const
+ExtendedMeterReading* ExtendedMeterReadingChange::getNewData() const
 {
     return newData;
 }

@@ -22,38 +22,38 @@ class Session : public QObject
     Q_OBJECT
 public:
     explicit Session(
-            const QSharedPointer<ExtendedMeterReadingInputSession>& input = QSharedPointer<ExtendedMeterReadingInputSession>::create(),
-            const QSharedPointer<ExtendedMeterReading>& consumed = QSharedPointer<ExtendedMeterReading>::create(),
-            const QSharedPointer<DoubleNumber>& price = QSharedPointer<DoubleNumber>::create(),
-            const QSharedPointer<DoubleNumber>& correctedHeatedVolume = QSharedPointer<DoubleNumber>::create(),
             QObject *parent = 0
     );
 
-    QSharedPointer<ExtendedMeterReadingInputSession> getInput() const;
+    ExtendedMeterReadingInputSession* getInput() const;
 
-    QSharedPointer<ExtendedMeterReading> getConsumed() const;
+    ExtendedMeterReading* getConsumed() const;
 
-    QSharedPointer<ConsumedWaterCalculationBinding> getConsumedBinding() const;
+    DoubleNumber* getPrice() const;
 
-    QSharedPointer<WaterPriceCalculationBinding> getPriceBinding() const;
-
-    QSharedPointer<DoubleNumber> getPrice() const;
-
-    QSharedPointer<DoubleNumber> getCorrectedHeatedVolume() const;
+    DoubleNumber* getCorrectedHeatedVolume() const;
 
 signals:
 
 public slots:
 
-private:
-    const QSharedPointer<ExtendedMeterReadingInputSession> input;
-    const QSharedPointer<ExtendedMeterReading> consumed;
-    const QSharedPointer<DoubleNumber> price;
-    const QSharedPointer<DoubleNumber> correctedHeatedVolume;
+    void deepCopy(Session* other)
+    {
+        input->deepCopy(other->input);
+        consumed->deepCopy(other->consumed);
+        price->deepCopy(other->price);
+        correctedHeatedVolume->deepCopy(other->correctedHeatedVolume);
+    }
 
-    const QSharedPointer<ConsumedWaterCalculationBinding> consumedBinding;
-    const QSharedPointer<WaterPriceCalculationBinding> priceBinding;
-    const QSharedPointer<DivisionBinding> correctedHeatedVolumeBinding;
+private:
+    ExtendedMeterReadingInputSession* input;
+    ExtendedMeterReading* consumed;
+    DoubleNumber* price;
+    DoubleNumber* correctedHeatedVolume;
+
+    ConsumedWaterCalculationBinding* consumedBinding;
+    WaterPriceCalculationBinding* priceBinding;
+    DivisionBinding* correctedHeatedVolumeBinding;
 };
 
 #endif // SESSION_H

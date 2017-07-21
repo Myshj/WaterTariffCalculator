@@ -5,6 +5,7 @@
 #include <QSharedPointer>
 
 #include "session.h"
+#include "statisticswindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -36,6 +37,8 @@ private slots:
 
     void on_oldGreaterThen50SpinBox_valueChanged(double arg1);
 
+    void on_showStatistics_triggered(bool checked);
+
 private:
     void renderCurrentSession();
     void bindControlsToCurrentSession();
@@ -46,6 +49,7 @@ private:
     void loadDefaultSession();
 
     Ui::MainWindow *ui;
+    StatisticsWindow statisticsWindow;
 
     QSharedPointer<Session> currentSession;
 };

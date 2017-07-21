@@ -20,10 +20,10 @@ signals:
 
 public slots:
 
+    void deepCopy(DoubleNumber* other);
+
     void setValue(const double value);
-    void resetValue(){
-        setValue(0.0);
-    }
+    void resetValue();
 
 private:
     double value;

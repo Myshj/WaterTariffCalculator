@@ -1,19 +1,16 @@
 #include "subtractionbinding.h"
 
 SubtractionBinding::SubtractionBinding(
-        const QSharedPointer<DoubleNumber> &a,
-        const QSharedPointer<DoubleNumber> &b,
-        const QSharedPointer<DoubleNumber> &target,
         QObject *parent
-) : TwoNumbersBinding (a, b, target, parent)
+) : TwoNumbersBinding (parent)
 {
 
 }
 
 void SubtractionBinding::transmit()
 {
-    const double aValue = a.data()->getValue();
-    const double bValue = b.data()->getValue();
+    const double aValue = a->getValue();
+    const double bValue = b->getValue();
 
-    target.data()->setValue(aValue - bValue);
+    target->setValue(aValue - bValue);
 }

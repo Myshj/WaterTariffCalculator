@@ -8,9 +8,6 @@ class DivisionBinding : public TwoNumbersBinding
 {
 public:
     explicit DivisionBinding(
-            const QSharedPointer<DoubleNumber>& a,
-            const QSharedPointer<DoubleNumber>& b,
-            const QSharedPointer<DoubleNumber>& target,
             QObject* parent = 0
     );
 

@@ -12,24 +12,30 @@
 class ExtendedMeterReadingChange : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(ExtendedMeterReading* oldData READ getOldData)
+    Q_PROPERTY(ExtendedMeterReading* newData READ getNewData)
 public:
     explicit ExtendedMeterReadingChange(
-            const QSharedPointer<ExtendedMeterReading>& oldData = QSharedPointer<ExtendedMeterReading>::create(),
-            const QSharedPointer<ExtendedMeterReading>& newData = QSharedPointer<ExtendedMeterReading>::create(),
             QObject *parent = 0
     );
 
-    QSharedPointer<ExtendedMeterReading> getOldData() const;
+    ExtendedMeterReading* getOldData() const;
 
-    QSharedPointer<ExtendedMeterReading> getNewData() const;
+    ExtendedMeterReading* getNewData() const;
 
 signals:
 
 public slots:
 
+    void deepCopy(ExtendedMeterReadingChange* other)
+    {
+        oldData->deepCopy(other->oldData);
+        newData->deepCopy(other->newData);
+    }
+
 private:
-    const QSharedPointer<ExtendedMeterReading> oldData;
-    const QSharedPointer<ExtendedMeterReading> newData;
+    ExtendedMeterReading* oldData;
+    ExtendedMeterReading* newData;
 };
 
 #endif // EXTENDEDMETERREADINGCHANGE_H

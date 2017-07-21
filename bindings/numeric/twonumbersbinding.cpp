@@ -1,24 +1,21 @@
 #include "twonumbersbinding.h"
 
 TwoNumbersBinding::TwoNumbersBinding(
-        const QSharedPointer<DoubleNumber>& a,
-        const QSharedPointer<DoubleNumber>& b,
-        const QSharedPointer<DoubleNumber>& target,
         QObject *parent
-): NumericBinding (target, parent),
-    a(a),
-    b(b)
+): NumericBinding (parent),
+    a(new DoubleNumber(0.0, this)),
+    b(new DoubleNumber(0.0, this))
 {
-    connect(a.data(), &DoubleNumber::valueChanged, this, &TwoNumbersBinding::transmit);
-    connect(b.data(), &DoubleNumber::valueChanged, this, &TwoNumbersBinding::transmit);
+    connect(a, &DoubleNumber::valueChanged, this, &TwoNumbersBinding::transmit);
+    connect(b, &DoubleNumber::valueChanged, this, &TwoNumbersBinding::transmit);
 }
 
-QSharedPointer<DoubleNumber> TwoNumbersBinding::getA() const
+DoubleNumber* TwoNumbersBinding::getA() const
 {
     return a;
 }
 
-QSharedPointer<DoubleNumber> TwoNumbersBinding::getB() const
+DoubleNumber* TwoNumbersBinding::getB() const
 {
     return b;
 }

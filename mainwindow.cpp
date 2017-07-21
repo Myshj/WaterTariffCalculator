@@ -22,7 +22,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    statisticsWindow(this)
 {
     ui->setupUi(this);
     loadDefaultSession();
@@ -37,9 +38,9 @@ void MainWindow::bindControlsToCurrentSession()
 {
     auto inputSession = currentSession.data()->getInput();
 
-    auto sessionChange = inputSession.data()->getChange().data();
+    auto sessionChange = inputSession->getChange();
 
-    auto newData = sessionChange->getNewData().data();
+    auto newData = sessionChange->getNewData();
     DoubleSpinboxesToExtendedMeterReadingConnector::connect(
                 *ui->currentLessThen40SpinBox,
                 *ui->currentFrom40To44SpinBox,
@@ -48,7 +49,7 @@ void MainWindow::bindControlsToCurrentSession()
                 *newData
     );
 
-    auto oldData = sessionChange->getOldData().data();
+    auto oldData = sessionChange->getOldData();
     DoubleSpinboxesToExtendedMeterReadingConnector::connect(
                 *ui->oldLessThen40SpinBox,
                 *ui->oldFrom40To44SpinBox,
@@ -57,7 +58,7 @@ void MainWindow::bindControlsToCurrentSession()
                 *oldData
     );
 
-    auto consumedVolume = currentSession->getConsumed().data();
+    auto consumedVolume = currentSession->getConsumed();
     ExtendedMeterReadingToDoubleSpinBoxesConnector::connect(
                 *consumedVolume,
                 *ui->lessThen40VolumeSpinBox,
@@ -66,14 +67,14 @@ void MainWindow::bindControlsToCurrentSession()
                 *ui->greaterThen50VolumeSpinBox
     );
 
-    auto tariffs = inputSession.data()->getTariffs().data();
+    auto tariffs = inputSession->getTariffs();
     DoubleSpinBoxToNumberConnector::connect(*ui->heatedWaterTariffSpinBox, *tariffs->getHeated());
     DoubleSpinBoxToNumberConnector::connect(*ui->coldWaterTariffSpinBox, *tariffs->getCold());
 
-    auto price = currentSession.data()->getPrice().data();
+    auto price = currentSession->getPrice();
     DoubleNumberToSpinBoxConnector::connect(*price, *ui->toPaySpinBox);
 
-    auto correctedHeatedVolume = currentSession.data()->getCorrectedHeatedVolume().data();
+    auto correctedHeatedVolume = currentSession.data()->getCorrectedHeatedVolume();
     DoubleNumberToSpinBoxConnector::connect(*correctedHeatedVolume, *ui->giocSpinBox);
 }
 
@@ -104,7 +105,7 @@ void MainWindow::loadSession(const QString& saveFileName)
     QJsonDocument saveDocument(QJsonDocument::fromJson(saveFile.readAll()));
     QJsonObject savedSession = saveDocument.object();
 
-    currentSession =JsonUtilities::loadSession(savedSession);
+    currentSession = QSharedPointer<Session>(JsonUtilities::loadSession(savedSession));
 
     renderCurrentSession();
     bindControlsToCurrentSession();
@@ -119,36 +120,36 @@ void MainWindow::loadDefaultSession()
 
 void MainWindow::renderCurrentSession()
 {
-    auto inputSession = currentSession->getInput().data();
+    auto inputSession = currentSession->getInput();
 
-    auto sessionChange = inputSession->getChange().data();
+    auto sessionChange = inputSession->getChange();
 
-    auto oldData = sessionChange->getOldData().data();
+    auto oldData = sessionChange->getOldData();
     ui->oldLessThen40SpinBox->setValue(oldData->getLessThen40()->getValue());
     ui->oldFrom40To44SpinBox->setValue(oldData->getFrom40To44()->getValue());
     ui->oldFrom45To49SpinBox->setValue(oldData->getFrom45To49()->getValue());
     ui->oldGreaterThen50SpinBox->setValue(oldData->getGreaterThen50()->getValue());
 
-    auto newData = sessionChange->getNewData().data();
+    auto newData = sessionChange->getNewData();
     ui->currentLessThen40SpinBox->setValue(newData->getLessThen40()->getValue());
     ui->currentFrom40To44SpinBox->setValue(newData->getFrom40To44()->getValue());
     ui->currentFrom45To49SpinBox->setValue(newData->getFrom45To49()->getValue());
     ui->currentGreaterThen50SpinBox->setValue(newData->getGreaterThen50()->getValue());
 
-    auto consumed = currentSession->getConsumed().data();
+    auto consumed = currentSession->getConsumed();
     ui->lessThen40VolumeSpinBox->setValue(consumed->getLessThen40()->getValue());
     ui->from40To44VolumeSpinBox->setValue(consumed->getFrom40To44()->getValue());
     ui->from45To49VolumeSpinBox->setValue(consumed->getFrom45To49()->getValue());
     ui->greaterThen50VolumeSpinBox->setValue(consumed->getGreaterThen50()->getValue());
 
-    auto tariffs = inputSession->getTariffs().data();
+    auto tariffs = inputSession->getTariffs();
     ui->heatedWaterTariffSpinBox->setValue(tariffs->getHeated()->getValue());
     ui->coldWaterTariffSpinBox->setValue(tariffs->getCold()->getValue());
 
-    auto price = currentSession->getPrice().data();
+    auto price = currentSession->getPrice();
     ui->toPaySpinBox->setValue(price->getValue());
 
-    auto correctedHeatedVolume = currentSession->getCorrectedHeatedVolume().data();
+    auto correctedHeatedVolume = currentSession->getCorrectedHeatedVolume();
     ui->giocSpinBox->setValue(correctedHeatedVolume->getValue());
 }
 
@@ -209,4 +210,12 @@ void MainWindow::on_oldFrom40To44SpinBox_valueChanged(double arg1)
 void MainWindow::on_oldGreaterThen50SpinBox_valueChanged(double arg1)
 {
     ui->currentGreaterThen50SpinBox->setMinimum(arg1);
+}
+
+#include "statisticswindow.h"
+
+void MainWindow::on_showStatistics_triggered(bool checked)
+{
+    qDebug() << "statistics requested";
+    statisticsWindow.show();
 }

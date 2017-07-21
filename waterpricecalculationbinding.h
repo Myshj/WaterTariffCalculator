@@ -18,11 +18,14 @@ class WaterPriceCalculationBinding : public NumericBinding
     Q_OBJECT
 public:
     explicit WaterPriceCalculationBinding(
-            const QSharedPointer<ExtendedMeterReading> consumed,
-            const QSharedPointer<TariffsForWater> tariffs,
-            const QSharedPointer<DoubleNumber> price,
             QObject *parent = 0
     );
+
+    ExtendedMeterReading *getConsumed() const;
+
+    TariffsForWater *getTariffs() const;
+
+    DoubleNumber *getPrice() const;
 
 signals:
 
@@ -32,9 +35,9 @@ public slots:
 
 private:
 
-    const QSharedPointer<ExtendedMeterReading> consumed;
-    const QSharedPointer<TariffsForWater> tariffs;
-    const QSharedPointer<DoubleNumber> price;
+    ExtendedMeterReading* consumed;
+    TariffsForWater* tariffs;
+    DoubleNumber* price;
 };
 
 #endif // WATERPRICECALCULATIONBINDING_H

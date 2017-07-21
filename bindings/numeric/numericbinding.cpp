@@ -1,15 +1,14 @@
 #include "numericbinding.h"
 
 NumericBinding::NumericBinding(
-        const QSharedPointer<DoubleNumber>& target,
         QObject *parent
 ): Binding (parent),
-    target(target)
+    target(new DoubleNumber(0.0, this))
 {
 
 }
 
-QSharedPointer<DoubleNumber> NumericBinding::getTarget() const
+DoubleNumber* NumericBinding::getTarget() const
 {
     return target;
 }

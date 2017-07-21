@@ -10,20 +10,17 @@ class TwoNumbersBinding : public NumericBinding
 {
 public:
     explicit TwoNumbersBinding(
-            const QSharedPointer<DoubleNumber>& a,
-            const QSharedPointer<DoubleNumber>& b,
-            const QSharedPointer<DoubleNumber>& target,
             QObject* parent = 0
     );
 
-    QSharedPointer<DoubleNumber> getA() const;
+    DoubleNumber* getA() const;
 
-    QSharedPointer<DoubleNumber> getB() const;
+    DoubleNumber* getB() const;
 
 protected:
 
-    const QSharedPointer<DoubleNumber> a;
-    const QSharedPointer<DoubleNumber> b;
+    DoubleNumber* a;
+    DoubleNumber* b;
 };
 
 #endif // TWONUMBERSBINDING_H

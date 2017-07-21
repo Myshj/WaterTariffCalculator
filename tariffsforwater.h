@@ -11,24 +11,30 @@
 class TariffsForWater : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(DoubleNumber* cold READ getCold)
+    Q_PROPERTY(DoubleNumber* heated READ getHeated)
 public:
     explicit TariffsForWater(
-            const QSharedPointer<DoubleNumber>& cold = QSharedPointer<DoubleNumber>::create(),
-            const QSharedPointer<DoubleNumber>& heated = QSharedPointer<DoubleNumber>::create(),
             QObject *parent = 0
     );
 
-    QSharedPointer<DoubleNumber> getCold() const;
+    DoubleNumber* getCold() const;
 
-    QSharedPointer<DoubleNumber> getHeated() const;
+    DoubleNumber* getHeated() const;
 
 signals:
 
 public slots:
 
+    void deepCopy(TariffsForWater* other)
+    {
+        cold->deepCopy(other->cold);
+        heated->deepCopy(other->heated);
+    }
+
 private:
-    const QSharedPointer<DoubleNumber> cold;
-    const QSharedPointer<DoubleNumber> heated;
+    DoubleNumber* cold;
+    DoubleNumber* heated;
 };
 
 #endif // TARIFFSFORWATER_H

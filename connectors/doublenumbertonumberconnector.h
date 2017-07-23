@@ -4,6 +4,9 @@
 #include "doublenumber.h"
 
 
+/**
+ * @brief The DoubleNumberToNumberConnector class establishes connection between two double numbers.
+ */
 class DoubleNumberToNumberConnector
 {
 

@@ -5,6 +5,10 @@
 
 #include "extendedmeterreading.h"
 
+
+/**
+ * @brief The DoubleSpinboxesToExtendedMeterReadingConnector class establishes connection from spinboxes to actual data.
+ */
 class DoubleSpinboxesToExtendedMeterReadingConnector
 {
 public:

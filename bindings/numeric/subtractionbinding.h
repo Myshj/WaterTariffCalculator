@@ -4,6 +4,9 @@
 #include "bindings/numeric/twonumbersbinding.h"
 
 
+/**
+ * @brief The SubtractionBinding class binds subtraction of two numbers to target.
+ */
 class SubtractionBinding : public TwoNumbersBinding
 {
 public:

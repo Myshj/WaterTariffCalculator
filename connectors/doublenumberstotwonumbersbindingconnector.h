@@ -7,6 +7,9 @@
 #include "connectors/doublenumbertonumberconnector.h"
 
 
+/**
+ * @brief The DoubleNumbersToTwoNumbersBindingConnector class establishes connection between binding members and actual data.
+ */
 class DoubleNumbersToTwoNumbersBindingConnector
 {
 public:

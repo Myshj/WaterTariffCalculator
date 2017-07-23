@@ -5,6 +5,9 @@
 #include "connectors/extendedmeterreadingconnector.h"
 
 
+/**
+ * @brief The ExtendedMeterReadingChangeConnector class establishes connection between two ExtendedMeterReadingChange objects.
+ */
 class ExtendedMeterReadingChangeConnector
 {
 public:

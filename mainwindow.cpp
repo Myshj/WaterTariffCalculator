@@ -183,6 +183,10 @@ void MainWindow::on_save_triggered()
     );
     if (!saveFileName.isNull())
     {
+        if (!saveFileName.endsWith(".json", Qt::CaseSensitivity::CaseInsensitive))
+        {
+            saveFileName.append(".json");
+        }
         saveCurrentSession(saveFileName);
     }
 }

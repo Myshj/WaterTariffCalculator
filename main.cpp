@@ -10,6 +10,10 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
+//    auto f = a.font();
+//    f.setPixelSize(16);
+//    a.setFont(f);
+
 //    QQmlApplicationEngine engine;
 //    engine.load(QUrl(QLatin1String("qrc:/main.qml")));
 

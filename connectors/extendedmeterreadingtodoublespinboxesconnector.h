@@ -6,6 +6,9 @@
 #include "extendedmeterreading.h"
 
 
+/**
+ * @brief The ExtendedMeterReadingToDoubleSpinBoxesConnector class establishes connection from ExtendedMeterReadingToDoubleSpinBoxesConnector to spinboxes.
+ */
 class ExtendedMeterReadingToDoubleSpinBoxesConnector
 {
 public:

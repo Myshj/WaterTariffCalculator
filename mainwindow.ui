@@ -99,7 +99,7 @@
       <item row="1" column="1">
        <widget class="QDoubleSpinBox" name="oldLessThen40SpinBox">
         <property name="toolTip">
-         <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
+         <string>Сюда вносить данные из ячейки &quot;&lt; 40 C&quot;</string>
         </property>
         <property name="decimals">
          <number>4</number>
@@ -223,7 +223,7 @@
       <item row="1" column="2">
        <widget class="QDoubleSpinBox" name="currentLessThen40SpinBox">
         <property name="toolTip">
-         <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
+         <string>Сюда вносить данные из ячейки &quot;&lt; 40 C&quot;</string>
         </property>
         <property name="decimals">
          <number>4</number>
@@ -249,7 +249,7 @@
          <bool>true</bool>
         </property>
         <property name="toolTip">
-         <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
+         <string>Сколько потреблено воды &quot;40 - 44C&quot;</string>
         </property>
         <property name="readOnly">
          <bool>true</bool>
@@ -274,7 +274,7 @@
          <bool>true</bool>
         </property>
         <property name="toolTip">
-         <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
+         <string>Сколько потреблено воды &quot;45 - 49 C&quot;</string>
         </property>
         <property name="readOnly">
          <bool>true</bool>
@@ -299,7 +299,7 @@
          <bool>true</bool>
         </property>
         <property name="toolTip">
-         <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
+         <string>Сколько потреблено воды &quot;&gt; 50 C&quot;</string>
         </property>
         <property name="readOnly">
          <bool>true</bool>
@@ -324,7 +324,7 @@
          <bool>true</bool>
         </property>
         <property name="toolTip">
-         <string>Сюда вносить данные из ячейки &quot;&lt; 40C&quot;</string>
+         <string>Сколько потреблено воды &quot;&lt; 40C&quot;</string>
         </property>
         <property name="autoFillBackground">
          <bool>true</bool>
@@ -519,6 +519,9 @@
      <height>21</height>
     </rect>
    </property>
+   <property name="toolTip">
+    <string>Панель меню</string>
+   </property>
    <widget class="QMenu" name="fileMenu">
     <property name="title">
      <string>Файл</string>
@@ -528,18 +531,14 @@
     <addaction name="save"/>
     <addaction name="quit"/>
    </widget>
-   <widget class="QMenu" name="statisticsMenu">
-    <property name="title">
-     <string>Статистика</string>
-    </property>
-    <addaction name="showStatistics"/>
-   </widget>
    <addaction name="fileMenu"/>
-   <addaction name="statisticsMenu"/>
   </widget>
   <action name="save">
    <property name="text">
     <string>Сохранить</string>
+   </property>
+   <property name="toolTip">
+    <string>Сохранить текущую сессию</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -549,6 +548,9 @@
    <property name="text">
     <string>Выйти</string>
    </property>
+   <property name="toolTip">
+    <string>Выйти из программы</string>
+   </property>
    <property name="menuRole">
     <enum>QAction::QuitRole</enum>
    </property>
@@ -556,6 +558,9 @@
   <action name="open">
    <property name="text">
     <string>Открыть</string>
+   </property>
+   <property name="toolTip">
+    <string>Открыть существующию сессию внесения показаний</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -566,7 +571,7 @@
     <string>Новый</string>
    </property>
    <property name="toolTip">
-    <string>Новый</string>
+    <string>Начать новую сессию внесения показаний</string>
    </property>
   </action>
   <action name="showStatistics">

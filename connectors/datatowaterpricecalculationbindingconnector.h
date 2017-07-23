@@ -8,6 +8,9 @@
 #include "tariffsforwaterconnector.h"
 
 
+/**
+ * @brief The DataToWaterPriceCalculationBindingConnector class establishes connection between binding members and actual data.
+ */
 class DataToWaterPriceCalculationBindingConnector
 {
 public:

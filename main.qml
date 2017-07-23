@@ -9,6 +9,7 @@ ApplicationWindow {
     height: 480
     title: qsTr("Калькулятор оплаты за горячую воду")
 
+
     menuBar: MenuBar {
             Menu {
                 title: qsTr("Файл")
@@ -37,5 +38,8 @@ ApplicationWindow {
             }
         }
 
-    AlternativeMainWindow{}
+
+    AlternativeMainWindow{
+        anchors.fill: parent
+    }
 }

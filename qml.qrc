@@ -3,5 +3,7 @@
         <file>AlternativeMainWindow.qml</file>
         <file>AlternativeMainWindowForm.ui.qml</file>
         <file>main.qml</file>
+        <file>OldSpinBox.qml</file>
+        <file>DefaultText.qml</file>
     </qresource>
 </RCC>

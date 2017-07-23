@@ -4,6 +4,10 @@
 #include "tariffsforwater.h"
 #include "doublenumbertonumberconnector.h"
 
+
+/**
+ * @brief The TariffsForWaterConnector class establishes connection between two TariffsForWater objects.
+ */
 class TariffsForWaterConnector
 {
 public:

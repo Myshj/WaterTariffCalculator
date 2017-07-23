@@ -4,6 +4,9 @@
 #include "twonumbersbinding.h"
 
 
+/**
+ * @brief The DivisionBinding class binds division of two numbers to target.
+ */
 class DivisionBinding : public TwoNumbersBinding
 {
 public:

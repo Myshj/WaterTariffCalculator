@@ -5,6 +5,10 @@
 
 #include "doublenumber.h"
 
+
+/**
+ * @brief The DoubleNumberToSpinBoxConnector class establishes connection from double number to spinbox.
+ */
 class DoubleNumberToSpinBoxConnector
 {
 public:

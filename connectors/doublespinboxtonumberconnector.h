@@ -6,6 +6,9 @@
 #include "doublenumber.h"
 
 
+/**
+ * @brief The DoubleSpinBoxToNumberConnector class establishes connection betweenspinbox and actual data.
+ */
 class DoubleSpinBoxToNumberConnector
 {
 public:

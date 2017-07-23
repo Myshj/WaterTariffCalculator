@@ -4,6 +4,8 @@
 #include <QJsonObject>
 #include <QSharedPointer>
 
+#include <QString>
+
 #include "doublenumber.h"
 #include "extendedmeterreading.h"
 #include "extendedmeterreadingchange.h"
@@ -12,16 +14,21 @@
 #include "session.h"
 
 
+/**
+ * @brief The JsonUtilities class encapsulates static functions for saving/loading objects to/from QJsonObjects.
+ */
 class JsonUtilities
 {
-public:
 
+private:
+    const static QString typeFieldName;
+public:
 
     static QJsonObject saveDoubleNumber(const DoubleNumber& doubleNumber)
     {
         QJsonObject ret;
 
-        ret["type"] = "DoubleNumber";
+        ret[typeFieldName] = "DoubleNumber";
         ret["value"] = doubleNumber.getValue();
 
         return ret;
@@ -38,7 +45,7 @@ public:
     {
         QJsonObject ret;
 
-        ret["type"] = "ExtendedMeterReading";
+        ret[typeFieldName] = "ExtendedMeterReading";
         ret["lessThen40"] = saveDoubleNumber(*extendedMeterReading.getLessThen40());
         ret["from40To44"] = saveDoubleNumber(*extendedMeterReading.getFrom40To44());
         ret["from45To49"] = saveDoubleNumber(*extendedMeterReading.getFrom45To49());
@@ -73,7 +80,7 @@ public:
     {
         QJsonObject ret;
 
-        ret["type"] = "ExtendedMeterReadingChange";
+        ret[typeFieldName] = "ExtendedMeterReadingChange";
         ret["oldData"] = saveExtendedMeterReading(*extendedMeterReadingChange.getOldData());
         ret["newData"] = saveExtendedMeterReading(*extendedMeterReadingChange.getNewData());
 
@@ -96,7 +103,7 @@ public:
     {
         QJsonObject ret;
 
-        ret["type"] = "TariffsForWater";
+        ret[typeFieldName] = "TariffsForWater";
         ret["cold"] = saveDoubleNumber(*tariffsForWater.getCold());
         ret["heated"] = saveDoubleNumber(*tariffsForWater.getHeated());
 
@@ -115,7 +122,7 @@ public:
     {
         QJsonObject ret;
 
-        ret["type"] = "ExtendedMeterReadingInputSession";
+        ret[typeFieldName] = "ExtendedMeterReadingInputSession";
         ret["change"] = saveExtendedMeterReadingChange(*extendedMeterReadingInputSession.getChange());
         ret["tariffs"] = saveTariffsForWater(*extendedMeterReadingInputSession.getTariffs());
 
@@ -134,7 +141,7 @@ public:
     {
         QJsonObject ret;
 
-        ret["type"] = "Session";
+        ret[typeFieldName] = "Session";
         ret["input"] = saveExtendedMeterReadingInputSession(*session.getInput());
         ret["consumed"] = saveExtendedMeterReading(*session.getConsumed());
         ret["price"] = saveDoubleNumber(*session.getPrice());

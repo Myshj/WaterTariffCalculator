@@ -9,6 +9,9 @@
 #include "extendedmeterreadingconnector.h"
 
 
+/**
+ * @brief The DataToConsumedWaterCalculationBindingConnector class establishes connection between binding members and actual data.
+ */
 class DataToConsumedWaterCalculationBindingConnector
 {
 public:
